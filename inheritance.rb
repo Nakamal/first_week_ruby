@@ -1,62 +1,61 @@
-class Vehicle
-  attr_reader :speed, :direction, :brake, :accelerate, :turn
-  attr_writer :speed, :direction, :brake, :accelerate, :turn
+module Move
+  def brake
+    @speed = 0
+  end
 
-  def initialize(input)
+  def accelerate
+    @speed += 10
+  end
+
+  def turn(new_direction)
+    @direction = new_direction
+  end
+end
+
+class Vehicle
+  def initialize
     @speed = 0
     @direction = 'north'
-    @brake 
-    @accelerate
-    @turn
   end
 end
 
 class Car < Vehicle
-  def initialize(input)
-    super(input)
-  end 
+  include Move
+  attr_reader :fuel, :make, :model
+
+  def initialize(car_options)
+    super()
+    @fuel = car_options[:fuel]
+    @make = car_options[:make]
+    @model = car_options[:model]
+  end
 
   def honk_horn
     puts "Beeeeeeep!"
   end
-
-  def a_c
-    puts " Ah, thank you, when is winter again?"
-  end
-
-  def model
-    puts "How fancy, look at mister royal over here, his car has a name."
-  end
 end
 
 class Bike < Vehicle
-  def initialize(input)
-    super(input)
+  include Move
+
+  def initialize(bike_options)
+    super()
+    @gears = bike_options[:gears]
+    @type = bike_options[:type]
+    @weight = bike_options[:weight]
+
   end
 
   def ring_bell
     puts "Ring ring!"
   end
-
-  def wheels
-    puts "Sir, you only have one wheel, so its a unicycle or its broken."
-  end
-
-  def basket
-    puts "Sir it's not the 50's...and please take your vegan soap somewhere else."
-  end
 end
 
-bike_1 = Bike.new("schwin")
+car = Car.new(
+              fuel: 10,
+              make: "Toyota"
+              model: "Corolla"
+              )
 
-car_1 = Car.new("Tesla")
-
-puts car_1.a_c
-
-puts bike_1.basket
-
-
-
-
-
+p car
 

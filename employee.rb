@@ -1,35 +1,21 @@
-class Snowboard
-  attr_reader :style, :flex, :price
-  attr_writer :style, :flex, :price
-  
-  def initialize(input_options)
-    @style = input_options[:style]
-    @flex = input_options[:flex]
-    @price = input_options[:flex]
+module Actualize
+  class Employee
+    attr_reader :first_name, :last_name, :salary, :active
+    attr_writer :first_name, :last_name, :active
+
+    def initialize(input_options)
+      @first_name = input_options[:first_name]
+      @last_name = input_options[:last_name]
+      @salary= input_options[:salary]
+      @active = input_options[:active]
+    end
+
+    def print_info
+      puts"#{ first_name } #{ last_name } makes #{ salary } a year."
+    end
+
+    def give_annual_raise
+      @salary = @salary * 1.05
+    end
   end
 end
-
-class Split < Snowboard
-  def initialize
-    super
-  end
-
-end
-
-fish = Snowboard.new(
-                      style: "powder", 
-                      flex: "stiff", 
-                      price: "high"
-                      )
-custom = Snowboard.new(
-                        style: "all moutain", 
-                        flex: "mid", 
-                        price: "above average"
-                        )
-name_dropper = Snowboard.new(
-                              style: "park", 
-                              flex: "loose", 
-                              price: "cheap"
-                              )
-
-p fish.style
